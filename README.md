@@ -53,6 +53,54 @@ pip install -r requirements.txt
 mlflow ui
 ```
 
+## Data Versioning with DVC
+
+This project uses DVC (Data Version Control) for managing and versioning datasets. Follow these steps to set up DVC:
+
+### 1. Create and Activate Virtual Environment
+```bash
+python -m venv .venv
+source .venv/Scripts/activate
+```
+
+### 2. Install DVC
+```bash
+python -m pip install dvc
+```
+
+### 3. Initialize DVC
+```bash
+python -m dvc init
+```
+
+### 4. Add Data to DVC
+Track your dataset with DVC:
+```bash
+python -m dvc add data/wine_sample.csv
+```
+
+This creates a `wine_sample.csv.dvc` file:
+```bash
+cat wine_sample.csv.dvc
+```
+
+### 5. Configure Remote Storage (S3)
+Add a remote S3 bucket for data storage:
+```bash
+python -m dvc remote add -d wineremote s3://wine-report-personallabs
+```
+
+### 6. Install DVC S3 Extension
+```bash
+python -m pip install dvc_s3
+```
+
+### 7. Push Data to Remote
+Upload your tracked data to the remote storage:
+```bash
+python -m dvc push
+```
+
 ## Usage
 
 ### Basic Training
